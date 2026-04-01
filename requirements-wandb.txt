@@ -1,5 +1,4 @@
-# Optional extras for experiment tracking
+# W&B and TensorBoard are now included in requirements.txt.
+# Keep this file as a compatibility alias for any existing setup notes.
 
 -r requirements.txt
-wandb>=0.16.0
-tensorboard>=2.14.0

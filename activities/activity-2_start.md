@@ -41,22 +41,25 @@ pip install -r requirements.txt
 
 **Option C — Google Colab**
 
-Go to [colab.research.google.com](https://colab.research.google.com), sign in, and create a **new blank notebook**. Run these cells in order:
+Go to [colab.research.google.com](https://colab.research.google.com), sign in, and upload `lab/01_finetune_distilbert_optimisation_in_the_wild.ipynb` first.
+
+Once the notebook is open, switch to a GPU runtime: **Runtime → Change runtime type → T4 GPU**.
+Then run this quick check in a fresh cell:
 
 ```python
-# Cell 1 — clone the repo
-!git clone https://github.com/Corndel/AI6-W6.git
-%cd AI6-W6
+!nvidia-smi
 ```
+
+If you see GPU details, you are on the right runtime. This lets you keep the full dataset and makes each training epoch much faster.
+
+Run this cell:
 
 ```python
-# Cell 2 — install dependencies (takes 2–3 minutes — wait for it to finish)
-!pip install -r requirements.txt -q
+# Install dependencies (takes 2–3 minutes — wait for it to finish)
+!pip install -q datasets==3.6.0 transformers[torch] accelerate
 ```
 
-Then open `lab/01_finetune_distilbert_optimisation_in_the_wild.ipynb` from the Colab file browser (folder icon on the left). Skip the `jupyter lab` step — Colab is already running a notebook environment. Note: model downloads on Colab use Google's network, which is generally fast and unblocked, so the HuggingFace fallback to the synthetic CSV is unlikely to activate.
-
-✅ **Checkpoint:** No errors during setup. You should see packages including `transformers`, `torch`, and `datasets` available (either pre-installed by Codespaces, or confirmed in the `pip install` output).
+✅ **Checkpoint:** No errors during setup. You should see packages including `transformers`, `torch`, and `datasets` available (either pre-installed by Codespaces, or confirmed in the `pip install` output), and `!nvidia-smi` should confirm GPU access on Colab.
 
 ⚠️ **Warning:** If you are in a Pluralsight sandbox and package downloads are slow or blocked, tell your coach now — switching to Plan B early costs less time than waiting 20 minutes.
 

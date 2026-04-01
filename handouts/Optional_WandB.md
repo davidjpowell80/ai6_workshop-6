@@ -26,10 +26,15 @@ Experiment tracking gives you:
 
 1) Create an account and project on W&B (one person per group is fine).
 
-2) Install wandb:
+2) Install dependencies if you have not already run the workshop install step.
+
+If you already installed from `requirements.txt`, you can skip this because `wandb` and
+`tensorboard` are now included there.
+
+If you need to install them separately:
 
 ```bash
-pip install wandb
+pip install wandb tensorboard
 ```
 
 3) Authenticate:
