@@ -11,7 +11,7 @@ setting up for the first time, **start with the section for your environment** u
 | Symptom | Most likely cause | Fix |
 |---|---|---|
 | `train_test_split` fails with `TypeError: only integer scalar arrays` | pandas 3.x + backup notebook `.values` bug (now patched) | Update to the patched notebook; use `.to_numpy()` |
-| `financial_phrasebank` download fails or hangs | HuggingFace blocked or dataset renamed | Fallback activates automatically; or use Plan B |
+| `financial_phrasebank` download fails or hangs | Incompatible `datasets` version, blocked HuggingFace access, or upstream issue | Pin `datasets==3.6.0`; on Colab install `datasets==3.6.0 transformers[torch] accelerate`; otherwise use Plan B |
 | DistilBERT download times out | Poor Wi-Fi / 20 simultaneous downloads | Pre-cache before the session; or use Plan B |
 | `ModuleNotFoundError: No module named 'torch'` | PyTorch not installed | Run `pip install -r requirements.txt` or pre-install |
 | Training cell crashes with `NaN loss` | `TOO_HIGH` preset on this hardware — expected | Record it; it is a teaching moment |
@@ -194,33 +194,29 @@ to install locally.
 **Setup:**
 
 1. Go to [colab.research.google.com](https://colab.research.google.com) and sign in with a Google account.
-2. Create a new notebook: **File → New notebook**.
-3. Run the following cells in order — do not open the workshop notebook first.
-
-> ⚠️ Do not use **File → Open notebook → GitHub** to open the workshop notebook directly.
-> If you do, the dependencies will not be installed and all imports will fail. Follow the
-> steps below instead.
+2. Upload `lab/01_finetune_distilbert_optimisation_in_the_wild.ipynb` so the main workshop notebook is open first.
+3. Change the runtime before running any setup cells: **Runtime → Change runtime type → T4 GPU**.
+4. In a fresh cell, run `!nvidia-smi` to confirm the GPU is attached.
+5. Run the following cell:
 
 ```python
-# Cell 1 — clone the repo
-!git clone https://github.com/Corndel/AI6-W6.git
-%cd AI6-W6
+# Install dependencies (takes 2–3 minutes — wait for it to finish)
+!pip install -q datasets==3.6.0 transformers[torch] accelerate
 ```
 
-```python
-# Cell 2 — install dependencies (takes 2–3 minutes — wait for it to finish)
-!pip install -r requirements.txt -q
-```
-
-Then navigate in the Colab file browser (folder icon, left sidebar) to
-`AI6-W6/lab/01_finetune_distilbert_optimisation_in_the_wild.ipynb` and click to open it.
-It will open in the same runtime session, so your installed packages will be available.
+You are already inside the main workshop notebook, so no additional repo setup is needed
+for the standard Colab path.
 
 **Colab-specific notes:**
 
-- **Runtime type:** The default CPU runtime is sufficient. If GPU is available (Runtime →
-  Change runtime type → T4 GPU), training will be noticeably faster, but the learning
-  objectives are fully achievable on CPU.
+- **Runtime type:** Prefer `Runtime → Change runtime type → T4 GPU` before installing
+  packages. In a fresh code cell, run `!nvidia-smi` to confirm Colab has attached the
+  GPU. This usually makes full-dataset training very fast. CPU still works if GPU is
+  unavailable, but it is slower.
+
+- **Pinned dataset version:** Colab should install `datasets==3.6.0` explicitly. This
+  avoids the current `financial_phrasebank` loader issue and means learners should not
+  need to rely on the CSV fallback in normal Colab use.
 
 - **Session timeouts:** Colab sessions time out after 90 minutes of inactivity and
   after a maximum of 12 hours (free tier). If a learner's session disconnects mid-training,

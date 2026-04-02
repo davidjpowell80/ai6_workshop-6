@@ -1,0 +1,25 @@
+{
+  "name": "AI6 Workshop 6W",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.languageServer": "Pylance",
+        "jupyter.notebookFileRoot": "${workspaceFolder}",
+        "jupyter.kernels.excludePythonEnvironments": [
+          "/usr/bin/python3",
+          "/usr/bin/python"
+        ]
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-renderers"
+      ]
+    }
+  },
+  "updateContentCommand": "/usr/local/bin/pip install --no-cache-dir -r requirements.txt && /usr/local/bin/pip cache purge && /usr/local/bin/python -m ipykernel install --user",
+  "postCreateCommand": "echo 'Environment ready.'"
+}

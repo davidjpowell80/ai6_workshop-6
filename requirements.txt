@@ -1,7 +1,8 @@
 # Core workshop dependencies
 # (Upper bounds help keep the workshop stable across environments.)
+# Pin datasets to avoid the current `financial_phrasebank` loader regression.
 
-datasets>=3.0.0,<5
+datasets==3.6.0
 transformers>=4.46.0,<5
 accelerate>=1.0.0,<2
 
@@ -16,3 +17,7 @@ matplotlib>=3.8.0
 # Notebooks
 jupyterlab>=4.0.0
 ipywidgets>=7.0.0
+
+# Optional tracking tools are included here to keep setup to a single install step.
+wandb>=0.16.0
+tensorboard>=2.14.0
