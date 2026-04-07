@@ -22,21 +22,21 @@ to an answer.
 
 **1.** Training loss explodes or becomes NaN early in training.
 
-Most likely: ☐ learning rate too high &nbsp;&nbsp; ☐ learning rate too low &nbsp;&nbsp; ☐ perfect model
+Most likely: * learning rate too high &nbsp;&nbsp; ☐ learning rate too low &nbsp;&nbsp; ☐ perfect model
 
 **2.** Training loss decreases but extremely slowly — the curve is almost flat.
 
-Most likely: ☐ learning rate too high &nbsp;&nbsp; ☐ learning rate too low &nbsp;&nbsp; ☐ label leakage
+Most likely: ☐ learning rate too high &nbsp;&nbsp; * learning rate too low &nbsp;&nbsp; ☐ label leakage
 
 **3.** Training loss goes down steadily, but validation loss goes up.
 
-Most likely: ☐ overfitting &nbsp;&nbsp; ☐ learning rate too low &nbsp;&nbsp; ☐ GPU too fast
+Most likely: * overfitting &nbsp;&nbsp; ☐ learning rate too low &nbsp;&nbsp; ☐ GPU too fast
 
 **4.** Training loss barely moves at all, and neither does validation performance.
 
 In one sentence, what would you check first?
 
-> _______________________________________________________________
+> Are the steps too small to make any significant progress. We should apply a decay schedule to start big with our steps and reduce the step size as the loss function reduces to an acceptable level
 
 ---
 
