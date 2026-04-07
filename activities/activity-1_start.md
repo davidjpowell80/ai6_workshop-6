@@ -34,9 +34,9 @@ For each curve, agree as a group on the most likely cause before moving on.
 
 | Curve | What you observe | Most likely cause |
 |---|---|---|
-| A | | |
-| B | | |
-| C | | |
+| A | The validation and the training results are tracking at similar rates | This means that the model is not over or under fitting and is performing well.|
+| B | The results of the training and validation loss are erratic. | This likely means that the training steps are too big and skipping over the optimal next step. We need to reduce the step size|
+| C | Loss is tracking well between validation and training data but the rate of improvement is slow.   | We are taking small steps that are not making a fast enough improvement. |
 
 💡 **Tip:** Focus on what the *validation* line is doing relative to the *training* line — not just whether training loss is going down.
 
